@@ -1,0 +1,32 @@
+/* 뉴스 게시판 */
+    @GetMapping("/news")
+    @SneakyThrows
+    public ModelAndView vvutinews() {
+        ModelAndView mav = new ModelAndView();
+
+        List<Newsmagazine> news = newsmagazineRepository.NewsAll();
+
+        mav.addObject("news", news);
+        mav.setViewName("VvutiNews");
+
+        return mav;
+    }
+
+    /*뉴스 상세페이지
+     *게시물 제목을 눌렀을 때 나타나는 상세페이지
+     */
+    @GetMapping("/news/detail/{newsmagazine_seq}")
+    public ModelAndView NewsDetail(
+            @PathVariable("newsmagazine_seq") int newsmagazine_seq
+    ){
+        ModelAndView mav = new ModelAndView();
+
+        NewsmagazineDetail detail = newsmagazineDetailRepository.find(newsmagazine_seq);
+        Newsmagazine title = newsmagazineRepository.findByseq(newsmagazine_seq);
+
+        mav.addObject("title", title);
+        mav.addObject("detail", detail);
+        mav.setViewName("VvutiNewsdetail");
+
+        return mav;
+    }

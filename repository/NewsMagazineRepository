@@ -1,0 +1,43 @@
+package com.alijas.vvuti.repository.other;
+
+import com.alijas.vvuti.model.other.Newsmagazine;
+import org.json.simple.JSONObject;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.stereotype.Repository;
+
+import javax.persistence.PersistenceContext;
+import java.util.List;
+
+public interface NewsmagazineRepository extends JpaRepository<Newsmagazine,Integer> {
+
+    @Query(value="select * from vvuti_contents_newsmagazine where newsmagazine_seq= ?1",nativeQuery = true)
+    Newsmagazine findByseq(int seq);
+
+    @Query(value="select * from vvuti_contents_newsmagazine where newsmagazine_seq= ?1",nativeQuery = true)
+    JSONObject findByseqtojson(int seq);
+
+    @Query(value="select * from vvuti_contents_newsmagazine where type = '뉴스' Order by regidate desc limit 3",nativeQuery = true)
+    List<JSONObject> newsmain();
+    @Query(value="select * from vvuti_contents_newsmagazine where type = '메거진' Order by regidate desc limit 3",nativeQuery = true)
+    List<JSONObject> magazinemain();
+
+    @Query(value = "SELECT * FROM vvuti_contents_newsmagazine where type ='뉴스' ORDER BY newsmagazine_seq desc LIMIT ?1 , 6",nativeQuery = true)
+    List<JSONObject> pageNews(int offset);
+
+    @Query(value = "SELECT * FROM vvuti_contents_newsmagazine Where type='뉴스'  ORDER BY regidate desc ",nativeQuery = true)
+    List<Newsmagazine> NewsAll();
+
+    @Query(value = "SELECT * FROM vvuti_contents_newsmagazine where type ='메거진' ORDER BY newsmagazine_seq desc LIMIT ?1 , 6",nativeQuery = true)
+    List<Newsmagazine> pageMagazine( int offset);
+
+    @Query(value = "SELECT * FROM vvuti_contents_newsmagazine Where type='메거진'",nativeQuery = true)
+    List<Newsmagazine> MagazineAll();
+    @Query(value="SELECT * FROM vvuti_contents_newsmagazine Where type='메거진' order by regidate desc",nativeQuery = true)
+    List<JSONObject> Webmagazine();
+    @Query(value="SELECT count(*) as listCnt FROM vvuti_contents_newsmagazine where type='메거진'",nativeQuery=true)
+    int listCnt();
+
+}

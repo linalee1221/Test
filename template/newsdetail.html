@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html leng="kor"   xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VVUTI</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Signika:wght@300;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
+    <link rel="stylesheet" href="/resources/css/common.css">
+    <link rel="shortcut icon" href="/resources/img/favicon.ico">
+    <link rel="stylesheet" href="/resources/css/news.css">
+    <link rel="stylesheet" href="/resources/css/magazine.css">
+    <link rel="stylesheet" href="/resources/css/mediaquery.css">
+    <link rel="stylesheet" href="/resources/css/setup.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&family=Questrial&family=Roboto:ital@1&display=swap" rel="stylesheet">
+</head>
+
+<body>
+<div th:replace="Vvutiheader.html"></div>
+  <main>
+    <div id="magazinePage">
+      <div class="wrap">
+        <div class="text">
+            <div class="title">뉴스</div>
+            <div class="sub">새로운 소식들을 확인해 보세요</div>
+        </div>
+      </div>
+
+      <div class="wrap">
+        <div class="vBoard">
+            <table class="nTable">
+                <colgroup>
+                    <col width="33%"/>
+                    <col width="33%"/>
+                    <col width="33%"/>
+                </colgroup>
+
+
+                <thead>
+                <th colspan="3">[[${title.title}]]</th>
+                </thead>
+                <tbody>
+                <tr>
+                    <td><span class="bold">작성자</span> | [[${title.uploader}]]</td>
+                    <td><span class="bold">등록일</span> | [[${title.regidate}]]</td>
+                    <td><span class="bold">조회수</span> | 0</td>
+                </tr>
+                <tr>
+                    <td class="newsImg" colspan="3"><img th:src="${detail.img}" alt=""></td>
+                </tr>
+                <tr>
+                    <td class="newsLink" colspan="3">기사 바로가기 | <span th:text="${link}"></span> </td>
+                </tr>
+                </tbody>
+            </table>
+
+<!--            <div class="newsImg">-->
+<!--                <img th:src="${detail.img}" alt="">-->
+<!--            </div>-->
+
+            <br><br>
+            <a href="javascript:history.back();"><div class="Btn" >목록</div></a>
+        </div>
+      </div>
+    </div>
+  </main>
+<div th:replace="Vvutifooter.html"></div>
+<script src="/resources/js/vvutinews.js"></script>
+<script src="/resources/js/common.js"></script>
+</body>
+</html>

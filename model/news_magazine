@@ -1,0 +1,39 @@
+package com.alijas.vvuti.model.other;
+
+
+import com.alijas.vvuti.repository.other.NewsmagazineRepository;
+import lombok.*;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.web.multipart.MultipartFile;
+
+import javax.persistence.*;
+import javax.transaction.Transactional;
+import java.util.Date;
+
+@Data
+@ToString
+@Entity
+@Table( name = "vvuti_contents_newsmagazine")
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+public class Newsmagazine {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY) // 번호증가전략이 데이터베이스를 따라간다.
+    private int newsmagazine_seq;
+
+    private String type;
+    private String uploader;
+    @Builder.Default
+    @Column(columnDefinition = "DATETIME",name = "regidate")
+    private Date regidate =  new Date(System.currentTimeMillis());
+    private String title;
+
+    private String thumb;
+    
+    private String newsLink; // 22/08/25 추가
+
+}

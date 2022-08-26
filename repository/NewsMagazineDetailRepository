@@ -1,0 +1,28 @@
+package com.alijas.vvuti.repository.other;
+
+import com.alijas.vvuti.model.other.NewsmagazineDetail;
+import org.json.simple.JSONObject;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+
+import java.util.List;
+
+public interface NewsmagazineDetailRepository extends JpaRepository<NewsmagazineDetail,Integer> {
+
+
+    @Query(value = "select * FROM vvuti_contents_newsmagazine_detail WHERE newsmagazine_seq = ?1",nativeQuery = true)
+    List<NewsmagazineDetail> findNewsmagazine_seq(int seq);
+
+    @Query(value = "select * FROM vvuti_contents_newsmagazine_detail where newsmagazine_seq = ?1 and sort=0",nativeQuery = true)
+    List<JSONObject> newsdetail(int seq);
+
+    @Query(value="select img FROM vvuti_contents_newsmagazine_detail where newsmagazine_seq=?1 and sort =0",nativeQuery = true)
+    String magazinedetail(int seq);
+
+    @Query(value = "select * FROM vvuti_contents_newsmagazine_detail WHERE newsmagazine_seq = ?1",nativeQuery = true)
+    NewsmagazineDetail find(int seq);
+
+    @Query(value = "select link from vvuti_contents_newsmagazine_detail WHERE newsmagazine_detail_seq = ?1",nativeQuery = true)
+    NewsmagazineDetail findLink(int seq); // newsmagazine_detail_seq로 게시물을 찾아와 링크만 출력..?
+
+}

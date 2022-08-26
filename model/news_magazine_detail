@@ -1,0 +1,31 @@
+package com.alijas.vvuti.model.other;
+
+
+import lombok.*;
+
+import javax.persistence.*;
+
+@Data
+@ToString
+@Entity
+@Table( name = "vvuti_contents_newsmagazine_detail"
+)
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+public class NewsmagazineDetail {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY) // 번호증가전략이 데이터베이스를 따라간다.
+    private int newsmagazine_detail_seq;
+
+    private int newsmagazine_seq;
+
+    private String img;
+    private String text;
+    private int sort;
+    
+    private String link; // 22/08/25 추가
+
+
+}
